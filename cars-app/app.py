@@ -21,9 +21,8 @@ def new():
 @app.route('/cars', methods = ['POST'])
 def create():
     # get some data via POST request (almost request.args)
-    make = request.form.get('make')
-    model = request.form.get('model')
-    year = request.form.get('year')
+    new_car = Car(model = request.form.get('car_make'), make = request.form.get('car_model'), year = request.form.get('car_year'))
+    cars.append(new_car)
     return redirect(url_for('index'))
 
 # @app.route("/cars", methods=["GET", "POST"])

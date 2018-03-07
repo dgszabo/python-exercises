@@ -21,9 +21,19 @@ def new():
 @app.route('/cars', methods = ['POST'])
 def create():
     # get some data via POST request (almost request.args)
-    new_car = Car(model = request.form.get('car_make'), make = request.form.get('car_model'), year = request.form.get('car_year'))
+    new_car = Car(request.form.get('car_make'), request.form.get('car_model'), request.form.get('car_year'))
     cars.append(new_car)
     return redirect(url_for('index'))
+
+@app.route('/cars/<int:id>')
+def show(id):
+    car = next( c for c in cars if c.id == id)
+    return render_template('show.html', car = car)
+
+@app.route('/cars/<int:id>/edit')
+def edit(id):
+    car = next( c for c in cars if c.id == id)
+    return render_template('edit.html', id=car_id)
 
 # @app.route("/cars", methods=["GET", "POST"])
 # def index():

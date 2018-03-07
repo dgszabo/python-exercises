@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Car Info
+{% endblock %}
+
+{% block content %}
+<h2>Your car is a {{ car.make }} {{ car.model }} from {{ car.year }}</h2>
+<a href="{{url_for('edit', id=car.id)}}">Edit</a> 
+
+{% endblock %}

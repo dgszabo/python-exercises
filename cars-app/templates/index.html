@@ -8,7 +8,7 @@
     <h2>Here are the cars in your data base</h2>
     <ol>
         {% for car in cars %}
-            <li>{{ car.make }} {{ car.model }} {{ car.year }}</li> 
+            <li><a href="{{url_for('show', id=car.id)}}">{{ car.make }} {{ car.model }} {{ car.year }}</a></li> 
         {% endfor %}
     </ol>
  {% endblock %}

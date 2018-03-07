@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+
+{% block title %}
+    Calculator app
+ {% endblock %}
+
+ {% block content %}
+    <h2>Calculate some numbers</h2>
+    <form action="/math">
+        <label for="number_1">First Number:</label>
+        <input type="number" name="first_number" id="number_1">
+        <br>
+        <label for="op">Operation: </label>
+       
+        <select name="operation" id="op">
+            <option value="add">Add</option>
+            <option value="subtract">Subtract</option>
+            <option value="multiply">Multiply</option>
+            <option value="divide">Divide</option>
+        </select>
+        <br>
+        <label for="number_2">Second Number: </label>
+        <input type="number" name="second_number" id="number_2">
+        <br>
+        <button>Calculate!</button>
+    </form>
+  {% endblock %}

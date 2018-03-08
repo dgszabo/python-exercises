@@ -11,4 +11,5 @@
             <li><a href="{{url_for('show', id=car.id)}}">{{ car.make }} {{ car.model }} {{ car.year }}</a></li> 
         {% endfor %}
     </ol>
+    <a href="/cars/new">Add a New Car!</a>
  {% endblock %}

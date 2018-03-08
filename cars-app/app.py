@@ -5,6 +5,7 @@ from car import Car
 cars = [Car("Toyota", "Corolla", 2005), Car("Toyota", "Corolla S", 2005)]
 
 app = Flask(__name__)
+modus = Modus(app)
 
 @app.route('/')
 def root():
@@ -25,15 +26,23 @@ def create():
     cars.append(new_car)
     return redirect(url_for('index'))
 
-@app.route('/cars/<int:id>')
+@app.route('/cars/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
 def show(id):
     car = next( c for c in cars if c.id == id)
+    if request.method == b'PATCH':
+        car.make = request.form.get('car_make')
+        car.model = request.form.get('car_model')
+        car.year = request.form.get('car_year')
+        return redirect(url_for('show', id=car.id))
+    if request.method == b'DELETE':
+        cars.remove(car)
+        return redirect(url_for('index'))
     return render_template('show.html', car = car)
 
 @app.route('/cars/<int:id>/edit')
 def edit(id):
     car = next( c for c in cars if c.id == id)
-    return render_template('edit.html', id=car_id)
+    return render_template('edit.html', car=car)
 
 # @app.route("/cars", methods=["GET", "POST"])
 # def index():

@@ -54,6 +54,8 @@ def show(id):
     if request.method == b'PATCH':
         snack.name = request.form.get('name')
         snack.kind = request.form.get('kind')
+        db.session.add(snack)
+        db.session.commit()
         return redirect(url_for('show', id=snack.id))
     if request.method == b'DELETE':
         db.session.delete(snack)

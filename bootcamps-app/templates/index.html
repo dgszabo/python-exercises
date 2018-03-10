@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Bootcamps App
+ {% endblock %}
+
+{% block content %}
+<h1>These are the available bootcamps</h1>
+<ul>
+    {% for bc in bootcamps %}
+        <li><a href="/bootcamps/{{bc.id}}">{{ bc.name }}</a></li> 
+
+     {% endfor %}
+</ul> 
+<hr>   
+<a href="/bootcamps/new">Add a new bootcamp!</a>
+ {% endblock %}

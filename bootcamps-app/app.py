@@ -18,15 +18,33 @@ class Bootcamp(db.Model):
     votes = db.Column(db.Integer)
 
     #DML
-    def __init__(self, name, location, votes):
+    def __init__(self, name, location):
         self.name = name
         self.location = location
-        self.votes = votes
+        self.votes = 0
 
 @app.route('/')
 def root():
     return redirect(url_for('index'))
 
-@app.route('/bootcamps')
+@app.route('/bootcamps', methods = ['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        new_bootcamp = Bootcamp(request.form.get('name'), request.form.get('location'))
+        db.session.add(new_bootcamp)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template('index.html', bootcamps = Bootcamp.query.all())
+
+@app.route('/bootcamps/new')
+def new():
+    return render_template('new.html')
+
+@app.route('/bootcamps/<int:id>')
+def show(id):
+    bootcamp = Bootcamp.query.get_or_404(id)
+    return render_template('show.html', bootcamp = bootcamp)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404

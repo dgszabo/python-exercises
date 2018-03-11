@@ -8,7 +8,7 @@
 <h1>These are the available bootcamps</h1>
 <ul>
     {% for bc in bootcamps %}
-        <li class="m-2 p-2 list-element" id="{{bc.id}}">
+        <li class="m-2 p-2 px-4 list-element d-flex align-middle" id="{{bc.id}}">
             <a href="/bootcamps/{{bc.id}}">{{ bc.name }}</a>
             <div class="btn-group btn-group-toggle mx-5" data-toggle="buttons">
                 <label class="btn btn-secondary">
@@ -28,6 +28,9 @@
 
      {% endfor %}
 </ul> 
-<hr>   
-<a href="{{url_for('index')}}">Add a new bootcamp!</a>
+<hr>
+<h4>
+    <a href="{{url_for('index')}}">Add a new bootcamp!</a>
+</h4>   
+
  {% endblock %}

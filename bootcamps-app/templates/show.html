@@ -10,12 +10,12 @@
         <br>
         {{ bootcamp.name }}
     </h1>
-    <h4>
+    <h2>
         The location of {{ bootcamp.name }} is:
         <br>
         {{ bootcamp.location }}
-    </h4>
-    <h6>
+    </h2>
+    <h4>
         <a href="{{url_for('edit', id = bootcamp.id)}}">Edit {{bootcamp.name}}</a>
-    </h6>
+    </h4>
   {% endblock %}

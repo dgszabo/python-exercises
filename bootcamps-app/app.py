@@ -40,10 +40,21 @@ def index():
 def new():
     return render_template('new.html')
 
-@app.route('/bootcamps/<int:id>')
+@app.route('/bootcamps/<int:id>', methods = ['GET', 'PATCH'])
 def show(id):
     bootcamp = Bootcamp.query.get_or_404(id)
+    if request.method == b'PATCH':
+        bootcamp.name = request.form.get('name')
+        bootcamp.location = request.form.get('location')
+        db.session.add(bootcamp)
+        db.session.commit()
+        return redirect(url_for('index'))
     return render_template('show.html', bootcamp = bootcamp)
+
+@app.route('/bootcamps/<int:id>/edit')
+def edit(id):
+    bootcamp = Bootcamp.query.get_or_404(id)
+    return render_template('edit.html', bootcamp = bootcamp)
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -15,4 +15,7 @@
         <br>
         {{ bootcamp.location }}
     </h4>
+    <h6>
+        <a href="{{url_for('edit', id = bootcamp.id)}}">Edit {{bootcamp.name}}</a>
+    </h6>
   {% endblock %}

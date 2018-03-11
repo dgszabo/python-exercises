@@ -1,0 +1,13 @@
+body {
+    background-image: url("markus-spiske-187777-unsplash.jpg");
+    background-position-x: center;
+    background-size: cover;
+}
+
+nav {
+    opacity: .8;
+}
+
+.list-element {
+    background-color: rgba(0,0,0,.5)
+}

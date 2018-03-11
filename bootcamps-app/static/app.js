@@ -20,7 +20,7 @@ $(document).ready(function() {
                 action: 'down_vote',
             }
         }).then(function(val) {
-            el.children().eq(1).children().eq(1).children().eq(0).text(val);
+            el.children().eq(3).children().eq(1).children().eq(0).text(val);
         });
     });
 
@@ -45,7 +45,7 @@ $(document).ready(function() {
                 action: 'up_vote'
             }
         }).then(function(val) {
-            el.children().eq(1).children().eq(1).children().eq(0).text(val);
+            el.children().eq(3).children().eq(1).children().eq(0).text(val);
         });
     });
 
@@ -67,7 +67,10 @@ $(document).ready(function() {
             method: 'DELETE',
             url: '/bootcamps/' + elId,
         }).then(function() {
-            el.fadeOut();
+            // el.removeClass('d-flex')
+            el.fadeOut(function() {
+                el.removeClass('d-flex')
+            });
         });
     });
 });

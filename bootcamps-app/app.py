@@ -34,7 +34,7 @@ def index():
         db.session.add(new_bootcamp)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('index.html', bootcamps = Bootcamp.query.all())
+    return render_template('index.html', bootcamps = Bootcamp.query.order_by(Bootcamp.votes.desc()))
 
 @app.route('/bootcamps/new')
 def new():
@@ -53,7 +53,14 @@ def show(id):
         db.session.delete(bootcamp)
         db.session.commit()
         return jsonify('deleted')
-    return render_template('show.html', bootcamp = bootcamp)
+    location_url = bootcamp.location.split(' ')[0]
+    for el in bootcamp.location.split(' ')[1:]:
+        if location_url[-1] == ',':
+            location_url += el
+        else:
+            location_url += '+' + el
+    map_elems = {'marker': bootcamp.name[0], 'address': location_url}
+    return render_template('show.html', bootcamp = bootcamp, map_elems = map_elems)
 
 @app.route('/bootcamps/<int:id>/edit')
 def edit(id):

@@ -9,8 +9,12 @@
 <ul>
     {% for bc in bootcamps %}
         <li class="m-2 p-2 px-4 list-element d-flex align-middle" id="{{bc.id}}">
-            <a href="/bootcamps/{{bc.id}}">{{ bc.name }}</a>
-            <div class="btn-group btn-group-toggle mx-5" data-toggle="buttons">
+            <a href="/bootcamps/{{bc.id}}">{{ bc.name }} </a>
+            <span class="location__span my-auto mx-4">{{ bc.location }}</span>
+            <button type="button" class="btn btn-secondary del-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="btn-group btn-group-toggle ml-auto mr-3" data-toggle="buttons">
                 <label class="btn btn-secondary down-btn">
                     <input type="radio" name="options"> 
                     <i class="fas fa-arrow-down"></i>

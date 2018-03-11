@@ -40,7 +40,7 @@ def index():
 def new():
     return render_template('new.html')
 
-@app.route('/bootcamps/<int:id>', methods = ['GET', 'PATCH'])
+@app.route('/bootcamps/<int:id>', methods = ['GET', 'PATCH', 'DELETE'])
 def show(id):
     bootcamp = Bootcamp.query.get_or_404(id)
     if request.method == b'PATCH':
@@ -49,6 +49,10 @@ def show(id):
         db.session.add(bootcamp)
         db.session.commit()
         return redirect(url_for('index'))
+    if request.method == 'DELETE':
+        db.session.delete(bootcamp)
+        db.session.commit()
+        return jsonify('deleted')
     return render_template('show.html', bootcamp = bootcamp)
 
 @app.route('/bootcamps/<int:id>/edit')

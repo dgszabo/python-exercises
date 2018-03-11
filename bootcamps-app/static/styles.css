@@ -35,5 +35,11 @@ h4 a:hover {
     text-decoration: none;
 }
 
+.location__span {
+    color: white;
+    font-size: 85%;
+    
+}
+
 
 

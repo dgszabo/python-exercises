@@ -56,6 +56,17 @@ def edit(id):
     bootcamp = Bootcamp.query.get_or_404(id)
     return render_template('edit.html', bootcamp = bootcamp)
 
+@app.route('/bootcamps/<int:id>/vote', methods = ['PATCH'])
+def up_vote(id):
+    bootcamp = Bootcamp.query.get_or_404(id)
+    if request.form['action'] == 'up_vote':
+        bootcamp.votes += 1
+    elif request.form['action'] == 'down_vote':
+        bootcamp.votes -= 1
+    db.session.add(bootcamp)
+    db.session.commit()
+    return jsonify(bootcamp.votes)
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

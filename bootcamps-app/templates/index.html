@@ -11,16 +11,16 @@
         <li class="m-2 p-2 px-4 list-element d-flex align-middle" id="{{bc.id}}">
             <a href="/bootcamps/{{bc.id}}">{{ bc.name }}</a>
             <div class="btn-group btn-group-toggle mx-5" data-toggle="buttons">
-                <label class="btn btn-secondary">
-                    <input type="radio" name="options" checked> 
+                <label class="btn btn-secondary down-btn">
+                    <input type="radio" name="options"> 
                     <i class="fas fa-arrow-down"></i>
                 </label>
                 <label class="btn btn-secondary disabled">
-                        {{bc.votes}}
-                    <input type="radio" name="options" autocomplete="off"> 
+                    <span class="votes-display">{{bc.votes}}</span>
+                    <input type="radio" name="options"> 
                 </label>
-                <label class="btn btn-secondary">
-                    <input type="radio" name="options" autocomplete="off"> 
+                <label class="btn btn-secondary up-btn">
+                    <input type="radio" name="options"> 
                     <i class="fas fa-arrow-up"></i>
                 </label>
             </div>

@@ -18,5 +18,6 @@ class Day(db.Model):
     name = db.Column(db.Text)
     mood = db.Column(db.Text)
     weather = db.Column(db.Text)
+    events_happenning = db.Column(db.Boolean, nullable = False, default = False)
 
 
